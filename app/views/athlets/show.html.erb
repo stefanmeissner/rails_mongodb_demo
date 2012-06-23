@@ -1,0 +1,42 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Vorname:</b>
+  <%= @athlet.first_name %>
+</p>
+ 
+<p>
+  <b>Nachname:</b>
+  <%= @athlet.last_name %>
+</p>
+
+<h2>Trainings Daten</h2>
+<% @athlet.training_records.each do |training| %>
+  <p>
+    <b>Start:</b>
+    <%= training.start %>
+  </p>
+ 
+  <p>
+    <b>End:</b>
+    <%= training.end %>
+  </p>
+<% end %>
+
+<h2>Neues Training eintragen:</h2>
+<%= form_for([@athlet, @athlet.training_records.build]) do |f| %>
+  <div class="field">
+    <%= f.label :start %><br />
+    <%= f.text_field :start %>
+  </div>
+  <div class="field">
+    <%= f.label :end %><br />
+    <%= f.text_field :end %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+  
+<%= link_to 'Ändere Athleten', edit_athlet_path(@athlet) %> |
+<%= link_to 'Zurück zur Übersicht', athlets_path %>
